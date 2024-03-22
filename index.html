@@ -32,7 +32,7 @@
         video.onloadedmetadata = () => video.play()
       })
       function takePhoto() {
-        ctx.drawImage(video, 0, 0)
+        ctx.drawImage(video, 0, 0, video.width, video.height)
         document.getElementById('imgXX').src = canvas.toDataURL('image/png')
       }
     </script>
