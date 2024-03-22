@@ -25,7 +25,8 @@
           facingMode: "environment",
           width,
           height
-        }
+        },
+        audio: false
       }
       navigator.mediaDevices.getUserMedia(constraints).then(stream => {
         video.srcObject = stream
