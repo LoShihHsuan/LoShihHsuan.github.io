@@ -1,40 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JS Camera</title>
-  </head>
-  <body>
-    <div id="contentHolder">
-      <video id="video" autoplay="true" playsinline style="background-color: #000"></video>
-      <canvas style="display: none" id="canvas"></canvas>
-      <img src=""  id="imgXX" />
-    </div>
-    <button id="btn_snap" onclick="takePhoto()">拍照</button>
-    <script>
-      const cvs = document.getElementById('canvas')
-      const video = document.getElementById('video')
-      cvs.width = cvs.height = video.width = video.height = 400
-      const { width, height } = cvs
-      const ctx = cvs.getContext('2d')
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JS Camera</title>
+    </head>
+    <body>
+        <div id="contentHolder">
+            <img id="output">
+            <video id="video" autoplay="true" playsinline style="background-color: #000"></video>
+            <canvas style="display: none" id="canvas"></canvas>
+            <img src=""  id="show_result_image" />
+        </div>
+        <p id="p1">A1</p>
+        <button id="btn_snap" onclick="takePhoto()">拍照</button>
+        <script>
+            const cvs = document.getElementById('canvas')
+            const video = document.getElementById('video')
+            cvs.width = cvs.height = video.width = video.height = 400
+            const { width, height } = cvs
+            const ctx = cvs.getContext('2d')
+            const inference_url = "http://10.1.1.6:22032/inference";
 
-      const constraints = {
-        video: {
-          facingMode: "environment",
-          width: {min: 640, ideal:1280, max: 1920}
-        },
-        audio: false
-      }
-      navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-        video.srcObject = stream
-        video.onloadedmetadata = () => video.play()
-      })
-      function takePhoto() {
-        ctx.drawImage(video, 0, 0, video.width, video.height)
-        document.getElementById('imgXX').src = canvas.toDataURL('image/png')
-      }
-    </script>
-  </body>
+            const constraints = {
+                video: {
+                    facingMode: "environment",
+                    width: {min: 640, ideal:1280, max: 1920}
+                },
+                audio: false
+            }
+            navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+                video.srcObject = stream
+                video.onloadedmetadata = () => video.play()
+            })
+
+            function takePhoto() {
+                // alert(video.);
+                // upload_image = Array.from(video.srcObject);
+
+                ctx.drawImage(video, 0, 0, video.width, video.height);
+                // document.getElementById('show_result_image').src = canvas.toDataURL('image/png');
+                const imageBlob = SendData(inference_url, canvas.toDataURL('image/png'));
+            }
+
+            async function SendData(inference_node_url, dataURL){
+                var blobBin = atob(dataURL.split(',')[1]);
+                var array = [];
+                for(var i = 0; i < blobBin.length; i++) {
+                    array.push(blobBin.charCodeAt(i));
+                }
+                var file = new Blob([new Uint8Array(array)], {type: 'image/png'});
+
+                const formData = new FormData();
+                formData.append("output_image", "1");
+                formData.append("image", file);
+                // const data = new URLSearchParams(formData)
+
+                let headers = {
+                    "Content-Type": "application/json",
+                }
+
+                const result = await fetch(inference_node_url, {
+                    mode: "cors",
+                    method: "POST",
+                    body: formData,
+                    // headers: headers
+                }).then(response => {
+                    // console.log(response);
+                    return response.blob();
+                }).then(blob => {
+                    // var blob = new Blob([data], { type: 'image/jpeg' });
+                    document.getElementById('show_result_image').src = URL.createObjectURL(blob);
+                    //URL.createObjectURL(blob);
+                    console.log(blob);
+                })
+
+
+                // document.getElementById('show_result_image').src = result;
+                // const blob = response.blob();
+                // document.getElementById('show_result_image').src = URL.createObjectURL(blob);
+                // console.log(blob);
+
+                // .then(response => {return response.blob()})
+                //   .then(blob => {
+                //         document.getElementById('show_result_image').src = URL.createObjectURL(blob);
+                //         console.log(URL.createObjectURL(blob));
+                //     });
+            }
+            
+        </script>
+    </body>
 </html>
