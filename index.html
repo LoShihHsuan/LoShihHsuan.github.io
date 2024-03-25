@@ -13,7 +13,6 @@
             <canvas style="display: none" id="canvas"></canvas>
             <img src=""  id="show_result_image" />
         </div>
-        <p id="p1">A1</p>
         <button id="btn_snap" onclick="takePhoto()">拍照</button>
         <script>
             const cvs = document.getElementById('canvas')
@@ -21,7 +20,7 @@
             cvs.width = cvs.height = video.width = video.height = 400
             const { width, height } = cvs
             const ctx = cvs.getContext('2d')
-            const inference_url = "http://10.1.1.6:22032/inference";
+            const inference_url = "http://211.75.116.134:30001/inference";
 
             const constraints = {
                 video: {
@@ -36,8 +35,6 @@
             })
 
             function takePhoto() {
-                // alert(video.);
-                // upload_image = Array.from(video.srcObject);
 
                 ctx.drawImage(video, 0, 0, video.width, video.height);
                 // document.getElementById('show_result_image').src = canvas.toDataURL('image/png');
@@ -75,18 +72,6 @@
                     //URL.createObjectURL(blob);
                     console.log(blob);
                 })
-
-
-                // document.getElementById('show_result_image').src = result;
-                // const blob = response.blob();
-                // document.getElementById('show_result_image').src = URL.createObjectURL(blob);
-                // console.log(blob);
-
-                // .then(response => {return response.blob()})
-                //   .then(blob => {
-                //         document.getElementById('show_result_image').src = URL.createObjectURL(blob);
-                //         console.log(URL.createObjectURL(blob));
-                //     });
             }
             
         </script>
