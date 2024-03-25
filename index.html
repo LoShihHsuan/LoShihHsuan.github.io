@@ -8,6 +8,8 @@
     </head>
     <body>
         <div id="contentHolder">
+            <input type="text" id="Host" name="Host" value="10.1.1.6:22032">
+            <hr>
             <img id="output">
             <video id="video" autoplay="true" playsinline style="background-color: #000"></video>
             <canvas style="display: none" id="canvas"></canvas>
@@ -20,7 +22,8 @@
             cvs.width = cvs.height = video.width = video.height = 400
             const { width, height } = cvs
             const ctx = cvs.getContext('2d')
-            const inference_url = "http://211.75.116.134:30001/inference";
+            // const inference_url = "http://10.1.1.6:22032/inference";
+            // const inference_url = "http://10.1.1.6:22032/inference";
 
             const constraints = {
                 video: {
@@ -35,13 +38,14 @@
             })
 
             function takePhoto() {
-
+                const host = document.getElementById("Host").value;
+                const inference_url = "http://"+host+"/inference";
                 ctx.drawImage(video, 0, 0, video.width, video.height);
                 // document.getElementById('show_result_image').src = canvas.toDataURL('image/png');
-                const imageBlob = SendData(inference_url, canvas.toDataURL('image/png'));
+                const imageBlob = SendData(inference_url, canvas.toDataURL('image/png'), video.width, video.height);
             }
 
-            async function SendData(inference_node_url, dataURL){
+            async function SendData(inference_node_url, dataURL, width, height){
                 var blobBin = atob(dataURL.split(',')[1]);
                 var array = [];
                 for(var i = 0; i < blobBin.length; i++) {
@@ -52,7 +56,6 @@
                 const formData = new FormData();
                 formData.append("output_image", "1");
                 formData.append("image", file);
-                // const data = new URLSearchParams(formData)
 
                 let headers = {
                     "Content-Type": "application/json",
@@ -64,12 +67,11 @@
                     body: formData,
                     // headers: headers
                 }).then(response => {
-                    // console.log(response);
                     return response.blob();
                 }).then(blob => {
-                    // var blob = new Blob([data], { type: 'image/jpeg' });
                     document.getElementById('show_result_image').src = URL.createObjectURL(blob);
-                    //URL.createObjectURL(blob);
+                    document.getElementById("show_result_image").height = height;
+                    document.getElementById("show_result_image").width = width;
                     console.log(blob);
                 })
             }
