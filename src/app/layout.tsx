@@ -33,7 +33,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "LO SHIH-HSUAN. | AI Algorithm Engineer & Autonomous Drone Architect",
   description:
-    "羅世軒 (Lo Shih-Hsuan) 個人形象作品集：專注於 PX4 無人機自主飛控、NVIDIA Jetson 邊緣運算與大型語言模型技術落地開發與應用。臺師大 AI 跨域博士生、3x NVIDIA DLI 官方認證講師。",
+    "羅世軒 (Lo Shih-Hsuan) 個人形象作品集：專注於 PX4 無人機自主飛控、NVIDIA 邊緣運算 與 大型語言模型技術落地開發與應用。現為臺師大 AI 跨域博士生、具備 Nivdia DLI 官方認證講師身分。",
   keywords: [
     "羅世軒",
     "Lo Shih-Hsuan",

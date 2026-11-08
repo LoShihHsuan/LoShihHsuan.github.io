@@ -1,7 +1,20 @@
 # 羅世軒 (Lo Shih-Hsuan) 個人形象品牌與作品集網站
 
-> **Senior AI Algorithm & Edge Autonomy Architect | NVIDIA DLI Certified Instructor**  
+> **Senior AI Algorithm & Edge Autonomy Architect | Nivdia DLI Certified Instructor**  
+> 專注於 **PX4 無人機自主飛控**、**NVIDIA 邊緣運算** 與 **大型語言模型技術落地開發與應用**。  
+> 現為**臺師大 AI 跨域博士生**、具備 **Nivdia DLI 官方認證講師** 身分。  
 > 本專案為符合 **GitHub Pages** 官方託管規範的個人品牌旗艦網站完整原始碼與靜態部署套裝。
+
+---
+
+## 🌟 核心特色與架構亮點
+
+* **高階社論排印美學**：融合義大利襯線體與工業風力量感無襯線字體，全站多段大氣深邃漸層（`#0E1220` $\rightarrow$ `#08080A` $\rightarrow$ `#0A0D16`）。
+* **模擬人類拖曳動態生成引擎**：當視區滾動進入卡片時，虛擬 Agent 於左上角現身，非線性拉伸展開 Figma 畫布選框，內容解碼後游標自動淡出，不留多餘標記。
+* **真實實機影音與憑證**：內建 PX4 自殺無人機靶標實機試飛影片、企業級 LLM Wiki 隨問隨答演示影片、NVIDIA DLI 官方原廠證書大圖與手繪工程 CAD 藍圖 Logo。
+* **矽谷級 i18n 雙語體系**：支援繁體中文（預設）與專業英文熱切換，採用 `localStorage` 狀態記憶持久化。
+* **個人隱私防護**：全站無任何電話號碼洩漏風險，提供一鍵複製 Email 渠道與研究實驗室坐標。
+* **28 項自動化保真度驗收**：通過嚴格之 ESM 自動化測試套件（`verify-fidelity.test.mjs`），零死角保障網站品質。
 
 ---
 
@@ -31,7 +44,7 @@ git status
 git add .
 
 # 提交變更
-git commit -m "Initial commit: Deploy Lo Shih-Hsuan personal branding website to GitHub Pages"
+git commit -m "Deploy Lo Shih-Hsuan personal branding website to GitHub Pages"
 
 # 將預設分支命名為 main
 git branch -M main
@@ -63,11 +76,12 @@ git push -u origin main
 | :--- | :--- |
 | **主個人站點命名** | 嚴格對應 `您的帳號名稱.github.io`，預設為根目錄網址。 |
 | **純靜態檔案規範** | 透過 Next.js 14 `output: 'export'` 預先編譯為全靜態 HTML/CSS/JS，無需任何 Node.js 伺服器後端，符合靜態伺服器要求。 |
-| **首頁檔案命名** | 根目錄具備標準全小寫 `index.html`（127KB 完整預渲染 HTML），避免 404 錯誤。 |
+| **首頁檔案命名** | 根目錄具備標準全小寫 `index.html`（125KB 完整預渲染 HTML），避免 404 錯誤。 |
 | **.nojekyll 設定** | 專案根目錄包含 `.nojekyll` 檔案，確保 GitHub Pages 不會以 Jekyll 引擎過濾以底線開頭的 `_next` 靜態核心模組。 |
 | **容量限制控制** | 全專案總體積約 **15 MB**，遠低於 GitHub 官方 1 GB 建議儲存上限；單一最大影音檔約 9.8 MB，遠低於 GitHub 100 MB 單檔限制。 |
 | **雙語熱切換 (i18n)** | 客戶端 React Context 零依賴雙語切換（預設繁體中文，支援英文），狀態持久化至瀏覽器 `localStorage`，不依賴後端 API。 |
-| **內容使用政策** | 純技術個人作品集與學經歷展示，絕無電子商務、支付轉帳、敏感表單輸入或未授權內容。 |
+| **展間純粹性** | 精選作品展間（Selected Work）移除分類分頁選項，常態展開三大代表作，兼具純粹視覺與簡潔操控。 |
+| **隱私與安全政策** | 全面移除個人手機號碼，僅保留電子郵件；絕無電子商務、支付轉帳、敏感表單輸入或未授權內容。 |
 
 ---
 
@@ -82,7 +96,7 @@ pnpm install
 # 2. 本地開發伺服器啟動 (http://localhost:3000)
 pnpm dev
 
-# 3. 執行靜態編譯與匯出 (將生成最新靜態檔案至根目錄/out)
+# 3. 執行靜態編譯與匯出 (將生成最新靜態檔案至根目錄)
 pnpm run build
 ```
 
@@ -95,7 +109,7 @@ LO_SHIH_HSUAN/
 ├── .github/workflows/deploy.yml  # GitHub Actions 自動部署工作流程 (備用自動化)
 ├── .gitignore                    # Git 忽略設定
 ├── .nojekyll                     # 關鍵設定：防止 Jekyll 過濾 _next/ 靜態資源
-├── index.html                    # GitHub Pages 網站首頁入口 (全靜態預渲染)
+├── index.html                    # GitHub Pages 網站首頁入口 (全靜態預渲染 125KB)
 ├── 404.html                      # 靜態 404 錯誤回退頁面
 ├── next.config.mjs               # 靜態匯出配置 (output: 'export', unoptimized: true)
 ├── package.json                  # 專案相依與建置腳本
@@ -115,5 +129,5 @@ LO_SHIH_HSUAN/
 ```
 
 ---
-*專案建置完成時間：2026-11-07*  
+*專案建置與校正完成時間：2026-11-08*  
 *授權：MIT / 個人所有*

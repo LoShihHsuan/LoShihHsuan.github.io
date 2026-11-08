@@ -4,24 +4,18 @@ import React, { useState } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
 import { FigmaCanvasFrame } from "@/components/figma/FigmaCanvasFrame";
 import { HumanSimulatedDragSection } from "@/components/generative/HumanSimulatedDragSection";
-import { Mail, Phone, MapPin, Copy, Check, ArrowUpRight, Sparkles } from "lucide-react";
+import { Mail, MapPin, Copy, Check, ArrowUpRight, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const FooterSection: React.FC = () => {
   const { personal } = PORTFOLIO_DATA;
   const { t } = useLanguage();
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedPhone, setCopiedPhone] = useState(false);
 
-  const copyToClipboard = (text: string, type: "email" | "phone") => {
+  const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    if (type === "email") {
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2000);
-    } else {
-      setCopiedPhone(true);
-      setTimeout(() => setCopiedPhone(false), 2000);
-    }
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
   };
 
   const bannerWords = [
@@ -115,27 +109,10 @@ export const FooterSection: React.FC = () => {
                       </div>
                     </div>
                     <button
-                      onClick={() => copyToClipboard(personal.email, "email")}
+                      onClick={() => copyToClipboard(personal.email)}
                       className="px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 transition-colors text-[10px]"
                     >
                       {copiedEmail ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
-                    </button>
-                  </div>
-
-                  {/* Phone */}
-                  <div className="p-4 rounded-xl bg-[#0C0D12] border border-white/[0.08] flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Phone className="w-4 h-4 text-[#FF8E53]" />
-                      <div>
-                        <div className="text-[10px] text-gray-500">{t.footer.channelPhone}</div>
-                        <div className="text-white font-bold">{personal.phone}</div>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => copyToClipboard(personal.phone, "phone")}
-                      className="px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 transition-colors text-[10px]"
-                    >
-                      {copiedPhone ? <Check className="w-3 h-3 text-[#10B981]" /> : <Copy className="w-3 h-3" />}
                     </button>
                   </div>
 

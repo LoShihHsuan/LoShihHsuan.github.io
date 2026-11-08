@@ -146,7 +146,7 @@ export const BentoExperienceSection: React.FC = () => {
                     {/* Official Badge Pill */}
                     <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#10B981]/90 text-white font-mono text-[9px] font-bold tracking-wider shadow-lg flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                      <span>NVIDIA DLI CERTIFIED</span>
+                      <span>Nivdia DLI CERTIFIED</span>
                     </div>
                   </div>
 

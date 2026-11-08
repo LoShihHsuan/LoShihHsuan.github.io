@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { FigmaCanvasFrame } from "@/components/figma/FigmaCanvasFrame";
 import { HumanSimulatedDragSection } from "@/components/generative/HumanSimulatedDragSection";
 import { ArrowUpRight, Compass, Eye, BrainCircuit } from "lucide-react";
@@ -8,22 +8,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 export const WorkShowcaseSection: React.FC = () => {
   const { t } = useLanguage();
-  const [activeTab, setActiveTab] = useState("All");
-
-  const filterTabs = [
-    { key: "All", label: t.workShowcase.filterTabs.all },
-    { key: "Drone Autonomy", label: t.workShowcase.filterTabs.drone },
-    { key: "Spatial Vision", label: t.workShowcase.filterTabs.vision },
-    { key: "Cognitive RAG", label: t.workShowcase.filterTabs.llm },
-    { key: "Edge AI", label: t.workShowcase.filterTabs.edge },
-  ];
-
   const works = t.workShowcase.works;
-
-  const filteredWorks =
-    activeTab === "All"
-      ? works
-      : works.filter((w) => w.category === activeTab);
 
   const cardAgents = [
     { name: "Flight", color: "#FF5A5F", label: "CARD_01_PX4" },
@@ -51,29 +36,12 @@ export const WorkShowcaseSection: React.FC = () => {
                 {t.workShowcase.sectionTitle}
               </h2>
             </div>
-
-            {/* Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-2">
-              {filterTabs.map((tab) => (
-                <button
-                  key={tab.key}
-                  onClick={() => setActiveTab(tab.key)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-sans transition-all duration-200 ${
-                    activeTab === tab.key
-                      ? "bg-white text-[#08080A] font-bold shadow-md"
-                      : "bg-[#0C0D12] border border-white/[0.08] text-gray-400 hover:text-white hover:border-white/20"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
           </div>
         </HumanSimulatedDragSection>
 
         {/* 3 Showcase Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {filteredWorks.map((work, idx) => {
+          {works.map((work, idx) => {
             const agent = cardAgents[idx % cardAgents.length];
             return (
               <HumanSimulatedDragSection

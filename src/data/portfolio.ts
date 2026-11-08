@@ -31,10 +31,10 @@ export const PORTFOLIO_DATA = {
     location: "台灣 桃園 / 台北",
     status: "AVAILABLE FOR HIGH-IMPACT AI & EDGE AUTONOMY ROLES",
     email: "kevig6633@gmail.com",
-    phone: "0975-928-705",
+    phone: "",
     experienceYears: "6~7",
     summary:
-      "專注於 AI 演算法、邊緣運算整合與無人機 (PX4) 智慧飛控系統開發。具備從無到有實現複雜軟硬體架構之能力，結合 Nvidia Jetson Nano/Orin 嵌入式算力打造高智慧度閉環導航與控制系統。身兼 3 項 NVIDIA DLI 官方認證授課講師，深諳大型語言模型技術落地開發與應用、電腦視覺落地與跨領域工業 AI 系統架構。",
+      "專注於 PX4 無人機自主飛控、NVIDIA 邊緣運算 與 大型語言模型技術落地開發與應用。現為臺師大 AI 跨域博士生、具備 Nivdia DLI 官方認證講師身分。具備從無到有實現複雜軟硬體架構之能力，結合 Nvidia Jetson Nano/Orin 嵌入式算力打造高智慧度閉環導航與控制系統，深諳大型語言模型技術落地開發與應用、電腦視覺落地與跨領域工業 AI 系統架構。",
   },
 
   education: [
@@ -103,7 +103,7 @@ export const PORTFOLIO_DATA = {
         "石化業 PTA 塑膠顆粒品質預測：客製化 ANN、1DCNN 與遺傳演算法優化生產參數平台",
         "法務部離線安全 LLM RAG 檢索增強系統建置 (Taide-8B + Qdrant 向量庫)",
         "工業電腦視覺檢測：藥丸表面瑕疵、晶圓/光學元件瑕疵、計程車流廣告辨識、廠房手部追蹤 SOP",
-        "擔任 NVIDIA DLI 官方認證授課講師，推廣深度學習、預測性維護與異常狀況偵測",
+        "擔任 Nivdia DLI 官方認證講師，推廣深度學習、預測性維護與異常狀況偵測",
       ],
     },
   ],
@@ -251,9 +251,9 @@ export const PORTFOLIO_DATA = {
     {
       id: "dli",
       name: "Agent_DLI",
-      role: "NVIDIA Certified Instructor",
+      role: "Nivdia Certified Instructor",
       color: "#A78BFA",
-      log: "3x NVIDIA DLI Instructor Credentials Validated",
+      log: "Nivdia DLI Instructor Credentials Validated",
     },
   ],
 };

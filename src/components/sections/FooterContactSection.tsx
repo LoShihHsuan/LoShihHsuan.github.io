@@ -4,22 +4,16 @@ import React, { useState } from "react";
 import { MarqueeDragGenerator } from "@/components/generative/MarqueeDragGenerator";
 import { QuantumGlassCard } from "@/components/quantum/QuantumGlassCard";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
-import { Mail, Phone, Copy, Check, RotateCcw, Send, MapPin, Sparkles } from "lucide-react";
+import { Mail, Copy, Check, RotateCcw, Send, MapPin, Sparkles } from "lucide-react";
 
 export const FooterContactSection: React.FC = () => {
   const { personal } = PORTFOLIO_DATA;
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedPhone, setCopiedPhone] = useState(false);
 
-  const copyToClipboard = (text: string, type: "email" | "phone") => {
+  const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    if (type === "email") {
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2000);
-    } else {
-      setCopiedPhone(true);
-      setTimeout(() => setCopiedPhone(false), 2000);
-    }
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
   };
 
   const replayDragGeneration = () => {
@@ -95,7 +89,7 @@ export const FooterContactSection: React.FC = () => {
                   </div>
                 </div>
                 <button
-                  onClick={() => copyToClipboard(personal.email, "email")}
+                  onClick={() => copyToClipboard(personal.email)}
                   className="px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs text-gray-300 flex items-center gap-1.5 transition-colors"
                 >
                   {copiedEmail ? (
@@ -104,32 +98,6 @@ export const FooterContactSection: React.FC = () => {
                     <Copy className="w-3.5 h-3.5" />
                   )}
                   <span>{copiedEmail ? "COPIED" : "COPY"}</span>
-                </button>
-              </div>
-
-              {/* Phone Card */}
-              <div className="p-5 rounded-xl bg-[#0A0D14]/80 backdrop-blur-md border border-white/[0.08] flex items-center justify-between hover:border-[#10B981]/40 transition-colors">
-                <div className="flex items-center gap-3.5">
-                  <div className="p-2.5 rounded-lg bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981]">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[10px] text-gray-400">VOICE FREQUENCY</div>
-                    <div className="text-xs font-bold text-white tracking-wide">
-                      {personal.phone}
-                    </div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => copyToClipboard(personal.phone, "phone")}
-                  className="px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs text-gray-300 flex items-center gap-1.5 transition-colors"
-                >
-                  {copiedPhone ? (
-                    <Check className="w-3.5 h-3.5 text-[#10B981]" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                  <span>{copiedPhone ? "COPIED" : "COPY"}</span>
                 </button>
               </div>
 
