@@ -112,21 +112,26 @@ LO_SHIH_HSUAN/
 ├── .nojekyll                     # 關鍵設定：防止 Jekyll 過濾 _next/ 靜態資源
 ├── index.html                    # GitHub Pages 網站首頁入口 (全靜態預渲染 420KB)
 ├── 404.html                      # 靜態 404 錯誤回退頁面
+├── index.txt                     # 靜態路由中繼檔案
 ├── next.config.mjs               # 靜態匯出配置 (output: 'export', unoptimized: true)
 ├── package.json                  # 專案相依與建置腳本
+├── pnpm-lock.yaml                # 鎖定精確相依套件版本
 ├── tailwind.config.ts            # Tailwind CSS 氛圍漸層與排印樣式配置
 ├── tsconfig.json                 # TypeScript 設定
+├── tests/                        # 30 項自動化保真度校驗測試套件 (verify-fidelity.test.mjs)
 ├── public/                       # 原始靜態多媒體資源庫 (圖片與影片)
-│   ├── images/                   # 肖像 (portrait.jpg)、DLI證書、白底極簡專屬Logo
-│   └── videos/                   # PX4無人機影片、LLM Wiki展示影片
-├── src/                          # Next.js 14 App Router 完整原始碼
-│   ├── app/                      # 頁面排版與全域樣式 (globals.css, page.tsx)
-│   ├── components/               # 7大展間、模擬人類拖曳動態引擎、Figma畫布框
+│   ├── images/                   # 肖像、DLI證書、全量同步最新白底極簡 Logo
+│   └── videos/                   # PX4無人機實機飛行影片、LLM Wiki展示影片
+├── src/                          # Next.js 14 App Router 完整原始碼 (100% 同步)
+│   ├── app/                      # 頁面排版與全域樣式 (globals.css, layout.tsx, page.tsx)
+│   ├── components/               # 7大展間、模擬人類拖曳動態引擎、擬人化逐字打字機、Figma畫布框
 │   ├── context/                  # 雙語切換 Context (LanguageContext.tsx)
-│   └── data/                     # 履歷數據庫與矽谷級雙語對照辭典 (translations.ts)
-├── images/                       # 靜態發布圖片目錄 (直接供 index.html 讀取)
+│   ├── data/                     # 履歷數據庫與矽谷級雙語對照辭典 (portfolio.ts, translations.ts)
+│   └── lib/                      # 工具函式 (utils.ts)
+├── images/                       # 靜態發布圖片目錄 (直接供 index.html 讀取，已全量同步最新Logo)
 ├── videos/                       # 靜態發布影音目錄 (直接供 index.html 讀取)
-└── _next/                        # Next.js 編譯產生的純靜態 JS/CSS 模組庫
+├── out/                          # Next.js export 產出之純靜態檔案庫 (供 GitHub Actions 發布)
+└── _next/                        # Next.js 最新編譯之純靜態單一雜湊 JS/CSS 模組庫
 ```
 
 ---
