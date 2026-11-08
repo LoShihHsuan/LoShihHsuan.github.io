@@ -167,8 +167,8 @@ async function runVerification() {
       "FOOTER_TITLE_1",
       "CH_EMAIL_VAL",
       "CH_LOC_VAL",
-      "CTA_FEEL_ALIVE",
-      "CTA_DESC",
+      "FOOTER_ACTION_BTN",
+      "CH_EMAIL_TITLE",
       "FOOTER_COPYRIGHT",
       "NAV_BRAND",
       "NAV_TALK"
@@ -280,9 +280,12 @@ async function runVerification() {
     assert.ok(html.includes("具備 Nivdia DLI 官方認證講師身分"), "Missing '具備 Nivdia DLI 官方認證講師身分' in bio");
   });
 
-  test("Section 07: Footer with star outline marquee & 'LET\\'S WORK TOGETHER'", () => {
+  test("Section 07: Footer with star outline marquee & redesigned 'LET\\'S WORK TOGETHER' Contact Matrix", () => {
     assert.ok(html.includes("LET&#x27;S WORK"), "Missing 'LET\\'S WORK TOGETHER' title");
-    assert.ok(html.includes("FEEL ALIVE."), "Missing 'FEEL ALIVE.' CTA block");
+    assert.ok(!html.includes("FEEL ALIVE."), "MAKE IT / FEEL ALIVE block must be cleanly removed");
+    assert.ok(!html.includes("MAKE IT"), "MAKE IT tag must be cleanly removed");
+    assert.ok(html.includes("PRIMARY DIRECT EMAIL"), "Missing redesigned Primary Direct Email block");
+    assert.ok(html.includes("kevig6633@gmail.com"), "Missing contact email");
     assert.ok(html.includes("✦"), "Missing hollow star symbol ✦ in marquee banner");
   });
 
@@ -320,6 +323,8 @@ async function runVerification() {
   test("i18n: Default language is Traditional Chinese (zh)", () => {
     assert.ok(html.includes("國立臺灣師範大學"), "Default SSR language must be Traditional Chinese (zh)");
     assert.ok(html.includes("機場 AI 視覺技術應用開發"), "Default SSR language must display Chinese project title");
+    assert.ok(html.includes("聯繫方式"), "Missing '聯繫方式' in navbar CTA");
+    assert.ok(!html.includes("立即諮詢"), "Legacy '立即諮詢' must be replaced");
   });
 
   console.log("\n--------------------------------------------------------");

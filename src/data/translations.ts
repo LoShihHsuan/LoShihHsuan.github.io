@@ -115,15 +115,20 @@ export interface Translations {
     headerTitle2: string;
     subtitle: string;
     insigniaLabel: string;
-    channelEmail: string;
-    channelPhone: string;
-    channelLocation: string;
-    locationValue: string;
-    makeItTag: string;
-    feelAlive: string;
-    actionDesc: string;
-    actionButton: string;
+    statusTag: string;
+    statusText: string;
+    channelEmailTitle: string;
+    channelEmailDesc: string;
+    sendEmailBtn: string;
+    copyEmailBtn: string;
     copied: string;
+    channelLocationTitle: string;
+    channelLocationLab: string;
+    channelLocationCity: string;
+    channelLocationMeta: string;
+    scopeTitle: string;
+    scopeItems: string[];
+    quickActionBtn: string;
     copyright: string;
     bottomTag: string;
   };
@@ -137,7 +142,7 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
       platforms: "軟體平台",
       journey: "生涯歷程",
       contact: "聯繫合作",
-      letsTalk: "立即諮詢",
+      letsTalk: "聯繫方式",
       langZh: "中文",
       langEn: "EN",
     },
@@ -349,17 +354,28 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer: {
       headerTitle1: "LET'S WORK",
       headerTitle2: "TOGETHER.",
-      subtitle: "隨時歡迎前瞻 AI 落地、無人機自主飛控或跨領域邊緣運算專案諮詢與產學合作。",
+      subtitle:
+        "隨時歡迎前瞻 AI 落地、PX4 無人機自主飛控或跨領域邊緣運算專案諮詢與產學合作。無論是前沿技術演講、企業顧問或深度研發合作，皆歡迎隨時聯繫。",
       insigniaLabel: "ENGINEER INSIGNIA // AUTONOMOUS AI",
-      channelEmail: "PRIMARY EMAIL",
-      channelPhone: "VOICE FREQUENCY",
-      channelLocation: "LAB LOCATION",
-      locationValue: "台灣 桃園 / 台北",
-      makeItTag: "MAKE IT",
-      feelAlive: "FEEL ALIVE.",
-      actionDesc: "點擊發起加密直通傳輸通道，直接聯繫羅世軒。",
-      actionButton: "Initiate Transmission",
+      statusTag: "CURRENT STATUS",
+      statusText: "開放高影響力專案、企業顧問與 DLI 技術演講邀約 // 預計 24~48 小時內即時回覆",
+      channelEmailTitle: "PRIMARY DIRECT EMAIL // 核心聯絡信箱",
+      channelEmailDesc: "點擊發送郵件啟動本機郵件軟體，或點擊複製按鈕快速取得信箱地址。",
+      sendEmailBtn: "發送郵件",
+      copyEmailBtn: "複製地址",
       copied: "已複製",
+      channelLocationTitle: "ACADEMIC LAB & LOCATION // 實驗室與學術坐標",
+      channelLocationLab: "國立臺灣師範大學 AI 跨域應用研究所",
+      channelLocationCity: "台灣 桃園 / 台北",
+      channelLocationMeta: "25.0263° N, 121.5275° E // ACADEMIC RESEARCH BASE",
+      scopeTitle: "COLLABORATION SCOPE // 開放合作與技術諮詢領域",
+      scopeItems: [
+        "PX4 自主飛控無人機研發 (PX4 Autonomy R&D)",
+        "Nivdia DLI 官方認證講師演講邀約 (DLI Keynotes)",
+        "企業級 LLM / RAG 系統建置 (Enterprise LLM)",
+        "NVIDIA 邊緣運算顧問 (Jetson Edge AI Consulting)",
+      ],
+      quickActionBtn: "直接發送郵件諮詢合作 ↗",
       copyright: `© ${new Date().getFullYear()} Lo Shih-Hsuan (羅世軒). All rights reserved.`,
       bottomTag: "INSPIRED BY AWWWARDS EDITORIAL CANVAS • BUILT WITH NEXT.JS 14",
     },
@@ -372,7 +388,7 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
       platforms: "Platforms",
       journey: "Milestones",
       contact: "Contact",
-      letsTalk: "Let's talk",
+      letsTalk: "Contact Me",
       langZh: "中文",
       langEn: "EN",
     },
@@ -587,17 +603,27 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
       headerTitle1: "LET'S WORK",
       headerTitle2: "TOGETHER.",
       subtitle:
-        "Always open for cutting-edge AI deployment, autonomous UAV controls, or cross-domain edge computing collaborations.",
+        "Always open for cutting-edge AI deployment, PX4 autonomous drone controls, or cross-domain edge computing collaborations. Available for keynote lectures, consulting, and advanced R&D.",
       insigniaLabel: "ENGINEER INSIGNIA // AUTONOMOUS AI",
-      channelEmail: "PRIMARY EMAIL",
-      channelPhone: "VOICE FREQUENCY",
-      channelLocation: "LAB LOCATION",
-      locationValue: "Taoyuan / Taipei, Taiwan",
-      makeItTag: "MAKE IT",
-      feelAlive: "FEEL ALIVE.",
-      actionDesc: "Click to establish a direct transmission channel to connect with Lo Shih-Hsuan.",
-      actionButton: "Initiate Transmission",
+      statusTag: "CURRENT STATUS",
+      statusText: "Available for advanced AI roles, consulting & DLI keynotes // 24-48h direct response",
+      channelEmailTitle: "PRIMARY DIRECT EMAIL",
+      channelEmailDesc: "Click Send Email to launch your default mail client, or copy the address to your clipboard.",
+      sendEmailBtn: "Send Email",
+      copyEmailBtn: "Copy Address",
       copied: "Copied!",
+      channelLocationTitle: "ACADEMIC LAB & LOCATION",
+      channelLocationLab: "AI Cross-Discipline Application Institute, NTNU",
+      channelLocationCity: "Taoyuan & Taipei, Taiwan",
+      channelLocationMeta: "25.0263° N, 121.5275° E // ACADEMIC RESEARCH BASE",
+      scopeTitle: "COLLABORATION SCOPE & EXPERTISE",
+      scopeItems: [
+        "PX4 Autonomous UAV Flight Controls & Autonomy",
+        "Nivdia DLI Official Lecture & Workshop Keynotes",
+        "Enterprise LLM & Multi-Agent Production Systems",
+        "NVIDIA Jetson Edge AI & Embedded Quantization",
+      ],
+      quickActionBtn: "Initiate Email Collaboration ↗",
       copyright: `© ${new Date().getFullYear()} Lo Shih-Hsuan. All rights reserved.`,
       bottomTag: "INSPIRED BY AWWWARDS EDITORIAL CANVAS • BUILT WITH NEXT.JS 14",
     },
