@@ -2,6 +2,7 @@
 
 import React from "react";
 import { HumanSimulatedDragSection } from "@/components/generative/HumanSimulatedDragSection";
+import { HumanSimulatedTypeText } from "@/components/generative/HumanSimulatedTypeText";
 
 export const GradientMarqueeTicker: React.FC = () => {
   const items = [
@@ -34,7 +35,18 @@ export const GradientMarqueeTicker: React.FC = () => {
         <div className="animate-marquee whitespace-nowrap flex items-center gap-8 font-sans font-black text-xs sm:text-sm tracking-wider text-[#08080A]">
           {items.concat(items).map((item, idx) => (
             <div key={idx} className="flex items-center gap-8">
-              <span className="uppercase">{item}</span>
+              <HumanSimulatedTypeText
+                text={item}
+                as="span"
+                fitContent
+                className="uppercase"
+                agentName="Pixel"
+                agentColor="#08080A"
+                frameLabel={`TICKER_${(idx % items.length) + 1}`}
+                delay={0.1 + (idx % items.length) * 0.05}
+                dragDuration={0.2}
+                typingSpeed={14}
+              />
               <span className="text-[#08080A]/60 font-bold">•</span>
             </div>
           ))}

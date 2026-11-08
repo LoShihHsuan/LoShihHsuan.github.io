@@ -9,12 +9,13 @@
 
 ## 🌟 核心特色與架構亮點
 
-* **高階社論排印美學**：融合義大利襯線體與工業風力量感無襯線字體，全站多段大氣深邃漸層（`#0E1220` $\rightarrow$ `#08080A` $\rightarrow$ `#0A0D16`）。
+* **高階社論排印與冷暖對比美學**：融合義大利襯線體與工業風力量感展示體，全站採用暮光黑曜岩溫潤微漸層（`#16111C` $\rightarrow$ `#09080B` $\rightarrow$ `#140E18`），搭配暖珀與薰衣草漫射光，與冷調電光青 Logo 形成極致典雅的冷暖互補對比，立體感躍然而出。
 * **模擬人類拖曳動態生成引擎**：當視區滾動進入卡片時，虛擬 Agent 於左上角現身，非線性拉伸展開 Figma 畫布選框，內容解碼後游標自動淡出，不留多餘標記。
-* **真實實機影音與憑證**：內建 PX4 自殺無人機靶標實機試飛影片、企業級 LLM Wiki 隨問隨答演示影片、NVIDIA DLI 官方原廠證書大圖與手繪工程 CAD 藍圖 Logo。
+* **擬人化動態拉框逐字打字機引擎（Human-Simulated Drag Text Area & Typewriter Engine）**：全站 100% 文字輸入動態化。結合父子卡片時序協同 (`DragSectionContext`)，確保卡片成型後內嵌文字依序拖框與逐字打入；滾動至每個標題、自述、專案描述段落、手風琴詳情（支援 `resetKey` 點擊重新觸發）、技術標籤 Pills、指標數值、跑馬燈單字與頁尾通訊時，虛擬滑鼠游標精準拖曳出虛線文字區域選框（標註 `[T] {frameLabel} // w × h px` 與四角頂點錨點），隨後閃爍光標逐字打字輸入文案，完成後光標與虛線框優雅溶解，兼具零版面跳動（Zero Layout Shift）與 100% 靜態 SEO 預渲染。
+* **真實實機影音與白底極簡專屬 Logo**：內建 PX4 自殺無人機靶標實機試飛影片、企業級 LLM Wiki 隨問隨答演示影片、NVIDIA DLI 官方原廠證書大圖與羅世軒專屬白底極簡幾何 Monogram Logo。
 * **矽谷級 i18n 雙語體系**：支援繁體中文（預設）與專業英文熱切換，採用 `localStorage` 狀態記憶持久化。
 * **個人隱私防護**：全站無任何電話號碼洩漏風險，提供一鍵複製 Email 渠道與研究實驗室坐標。
-* **28 項自動化保真度驗收**：通過嚴格之 ESM 自動化測試套件（`verify-fidelity.test.mjs`），零死角保障網站品質。
+* **30 項自動化保真度驗收**：通過嚴格之 ESM 自動化測試套件（`verify-fidelity.test.mjs`），零死角保障網站品質。
 
 ---
 
@@ -76,7 +77,7 @@ git push -u origin main
 | :--- | :--- |
 | **主個人站點命名** | 嚴格對應 `您的帳號名稱.github.io`，預設為根目錄網址。 |
 | **純靜態檔案規範** | 透過 Next.js 14 `output: 'export'` 預先編譯為全靜態 HTML/CSS/JS，無需任何 Node.js 伺服器後端，符合靜態伺服器要求。 |
-| **首頁檔案命名** | 根目錄具備標準全小寫 `index.html`（125KB 完整預渲染 HTML），避免 404 錯誤。 |
+| **首頁檔案命名** | 根目錄具備標準全小寫 `index.html`（420KB 完整預渲染 HTML），避免 404 錯誤。 |
 | **.nojekyll 設定** | 專案根目錄包含 `.nojekyll` 檔案，確保 GitHub Pages 不會以 Jekyll 引擎過濾以底線開頭的 `_next` 靜態核心模組。 |
 | **容量限制控制** | 全專案總體積約 **15 MB**，遠低於 GitHub 官方 1 GB 建議儲存上限；單一最大影音檔約 9.8 MB，遠低於 GitHub 100 MB 單檔限制。 |
 | **雙語熱切換 (i18n)** | 客戶端 React Context 零依賴雙語切換（預設繁體中文，支援英文），狀態持久化至瀏覽器 `localStorage`，不依賴後端 API。 |
@@ -109,14 +110,14 @@ LO_SHIH_HSUAN/
 ├── .github/workflows/deploy.yml  # GitHub Actions 自動部署工作流程 (備用自動化)
 ├── .gitignore                    # Git 忽略設定
 ├── .nojekyll                     # 關鍵設定：防止 Jekyll 過濾 _next/ 靜態資源
-├── index.html                    # GitHub Pages 網站首頁入口 (全靜態預渲染 125KB)
+├── index.html                    # GitHub Pages 網站首頁入口 (全靜態預渲染 420KB)
 ├── 404.html                      # 靜態 404 錯誤回退頁面
 ├── next.config.mjs               # 靜態匯出配置 (output: 'export', unoptimized: true)
 ├── package.json                  # 專案相依與建置腳本
 ├── tailwind.config.ts            # Tailwind CSS 氛圍漸層與排印樣式配置
 ├── tsconfig.json                 # TypeScript 設定
 ├── public/                       # 原始靜態多媒體資源庫 (圖片與影片)
-│   ├── images/                   # 肖像 (portrait.jpg)、DLI證書、手繪工程Logo
+│   ├── images/                   # 肖像 (portrait.jpg)、DLI證書、白底極簡專屬Logo
 │   └── videos/                   # PX4無人機影片、LLM Wiki展示影片
 ├── src/                          # Next.js 14 App Router 完整原始碼
 │   ├── app/                      # 頁面排版與全域樣式 (globals.css, page.tsx)

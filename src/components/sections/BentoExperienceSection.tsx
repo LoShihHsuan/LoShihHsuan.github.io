@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { FigmaCanvasFrame } from "@/components/figma/FigmaCanvasFrame";
 import { HumanSimulatedDragSection } from "@/components/generative/HumanSimulatedDragSection";
+import { HumanSimulatedTypeText } from "@/components/generative/HumanSimulatedTypeText";
 import { Sparkles, Quote, CheckCircle2, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -13,7 +14,7 @@ export const BentoExperienceSection: React.FC = () => {
   const capabilities = t.bento.capabilities;
 
   return (
-    <section id="about" className="relative py-28 bg-gradient-to-b from-[#08080A] via-[#090C16]/90 to-[#08080A] border-t border-white/[0.06] overflow-hidden">
+    <section id="about" className="relative py-28 bg-gradient-to-b from-[#08080A] via-[#130E17]/90 to-[#08080A] border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-10">
         
         {/* Section Header */}
@@ -23,17 +24,41 @@ export const BentoExperienceSection: React.FC = () => {
           frameLabel="FRAME_EXPERIENCE"
           dragDuration={0.8}
         >
-          <div className="flex items-baseline gap-3">
-            <h2 className="text-4xl sm:text-6xl font-tactical font-black text-white tracking-tight uppercase">
-              {t.bento.headerTitle1}
-            </h2>
-            <span className="font-editorial italic text-4xl sm:text-6xl text-[#FF5A5F]">
-              {t.bento.headerTitle2}
-            </span>
+          <div className="flex items-baseline gap-3 flex-wrap">
+            <HumanSimulatedTypeText
+              text={t.bento.headerTitle1}
+              as="h2"
+              className="text-4xl sm:text-6xl font-tactical font-black text-white tracking-tight uppercase"
+              agentName="Heading"
+              agentColor="#FBBF24"
+              frameLabel="EXP_TITLE_1"
+              delay={0.15}
+              dragDuration={0.45}
+              typingSpeed={20}
+            />
+            <HumanSimulatedTypeText
+              text={t.bento.headerTitle2}
+              as="span"
+              className="font-editorial italic text-4xl sm:text-6xl text-[#FF5A5F]"
+              agentName="Accent"
+              agentColor="#FF5A5F"
+              frameLabel="EXP_TITLE_2"
+              delay={0.3}
+              dragDuration={0.45}
+              typingSpeed={20}
+            />
           </div>
-          <p className="text-sm font-mono text-gray-400 mt-2 tracking-widest uppercase">
-            {t.bento.headerSubtitle}
-          </p>
+          <HumanSimulatedTypeText
+            text={t.bento.headerSubtitle}
+            as="p"
+            className="text-sm font-mono text-gray-400 mt-2 tracking-widest uppercase"
+            agentName="Sub"
+            agentColor="#38BDF8"
+            frameLabel="EXP_SUB"
+            delay={0.4}
+            dragDuration={0.4}
+            typingSpeed={16}
+          />
         </HumanSimulatedDragSection>
 
         {/* 2-Column Bento Layout as in video 1 */}
@@ -63,24 +88,60 @@ export const BentoExperienceSection: React.FC = () => {
                         }`}
                       >
                         <div className="flex items-center justify-between mb-1.5">
-                          <span className="font-tactical font-bold text-sm text-white flex items-center gap-2">
-                            <span className="text-[#FF5A5F] text-xs font-mono">
-                              0{idx + 1}
-                            </span>
-                            {cap.title}
-                          </span>
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-gray-400">
-                            {cap.meta}
-                          </span>
+                          <div className="flex items-center gap-2">
+                            <HumanSimulatedTypeText
+                              text={`0${idx + 1}`}
+                              as="span"
+                              fitContent
+                              className="text-[#FF5A5F] text-xs font-mono font-bold"
+                              agentName="Num"
+                              agentColor="#FF5A5F"
+                              frameLabel={`CAP_${idx + 1}_NUM`}
+                              delay={idx * 0.1 + 0.1}
+                              dragDuration={0.2}
+                              typingSpeed={20}
+                            />
+                            <HumanSimulatedTypeText
+                              text={cap.title}
+                              as="span"
+                              fitContent
+                              className="font-tactical font-bold text-sm text-white"
+                              agentName="Skill"
+                              agentColor="#FF5A5F"
+                              frameLabel={`CAP_${idx + 1}_TITLE`}
+                              delay={idx * 0.1 + 0.15}
+                              dragDuration={0.3}
+                              typingSpeed={16}
+                            />
+                          </div>
+                          <HumanSimulatedTypeText
+                            text={cap.meta}
+                            as="span"
+                            fitContent
+                            className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-gray-400"
+                            agentName="Meta"
+                            agentColor="#888888"
+                            frameLabel={`CAP_${idx + 1}_META`}
+                            delay={idx * 0.1 + 0.25}
+                            dragDuration={0.25}
+                            typingSpeed={14}
+                          />
                         </div>
 
-                        <p
+                        <HumanSimulatedTypeText
+                          text={cap.detail}
+                          as="p"
+                          resetKey={isExpanded}
                           className={`text-xs text-gray-400 font-sans leading-relaxed pt-2 transition-all duration-300 ${
                             isExpanded ? "block" : "hidden sm:line-clamp-1"
                           }`}
-                        >
-                          {cap.detail}
-                        </p>
+                          agentName="Detail"
+                          agentColor="#38BDF8"
+                          frameLabel={`CAP_${idx + 1}_DETAIL`}
+                          delay={isExpanded ? 0.05 : idx * 0.1 + 0.35}
+                          dragDuration={0.35}
+                          typingSpeed={8}
+                        />
                       </div>
                     );
                   })}
@@ -103,22 +164,58 @@ export const BentoExperienceSection: React.FC = () => {
               <FigmaCanvasFrame label="TESTIMONIAL_CARD" showHandles={true}>
                 <div className="p-7 rounded-2xl bg-gradient-to-br from-[#12141F] to-[#0A0B10] border border-white/[0.08] relative overflow-hidden shadow-2xl">
                   <Quote className="w-8 h-8 text-[#FF5A5F]/40 mb-4" />
-                  <p className="font-editorial italic text-xl sm:text-2xl text-gray-200 leading-relaxed">
-                    &ldquo;{t.bento.quoteText}&rdquo;
-                  </p>
+                  <div className="font-editorial italic text-xl sm:text-2xl text-gray-200 leading-relaxed">
+                    <span>&ldquo;</span>
+                    <HumanSimulatedTypeText
+                      text={t.bento.quoteText}
+                      as="span"
+                      agentName="Quote"
+                      agentColor="#FF5A5F"
+                      frameLabel="QUOTE_TEXT"
+                      delay={0.25}
+                      dragDuration={0.5}
+                      typingSpeed={14}
+                    />
+                    <span>&rdquo;</span>
+                  </div>
 
                   <div className="mt-6 pt-4 border-t border-white/[0.08] flex items-center justify-between font-mono text-xs">
                     <div>
-                      <div className="font-bold text-white tracking-wider">
-                        {t.bento.quoteAuthor}
-                      </div>
-                      <div className="text-[10px] text-gray-500">
-                        AI ALGORITHM ARCHITECT // NTNU PH.D.
-                      </div>
+                      <HumanSimulatedTypeText
+                        text={t.bento.quoteAuthor}
+                        as="div"
+                        className="font-bold text-white tracking-wider"
+                        agentName="Author"
+                        agentColor="#FF5A5F"
+                        frameLabel="QUOTE_AUTHOR"
+                        delay={0.35}
+                        dragDuration={0.3}
+                        typingSpeed={16}
+                      />
+                      <HumanSimulatedTypeText
+                        text="AI ALGORITHM ARCHITECT // NTNU PH.D."
+                        as="div"
+                        className="text-[10px] text-gray-500"
+                        agentName="Role"
+                        agentColor="#888888"
+                        frameLabel="QUOTE_ROLE"
+                        delay={0.45}
+                        dragDuration={0.3}
+                        typingSpeed={14}
+                      />
                     </div>
-                    <span className="text-[10px] text-[#FF5A5F] font-bold">
-                      VERIFIED
-                    </span>
+                    <HumanSimulatedTypeText
+                      text="VERIFIED"
+                      as="span"
+                      fitContent
+                      className="text-[10px] text-[#FF5A5F] font-bold"
+                      agentName="Badge"
+                      agentColor="#FF5A5F"
+                      frameLabel="QUOTE_VERIFIED"
+                      delay={0.5}
+                      dragDuration={0.25}
+                      typingSpeed={14}
+                    />
                   </div>
                 </div>
               </FigmaCanvasFrame>
@@ -146,22 +243,56 @@ export const BentoExperienceSection: React.FC = () => {
                     {/* Official Badge Pill */}
                     <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#10B981]/90 text-white font-mono text-[9px] font-bold tracking-wider shadow-lg flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                      <span>Nivdia DLI CERTIFIED</span>
+                      <HumanSimulatedTypeText
+                        text="Nivdia DLI CERTIFIED"
+                        as="span"
+                        fitContent
+                        agentName="Badge"
+                        agentColor="#10B981"
+                        frameLabel="DLI_BADGE"
+                        delay={0.4}
+                        dragDuration={0.25}
+                        typingSpeed={14}
+                      />
                     </div>
                   </div>
 
                   {/* Certificate Info */}
                   <div className="p-5 pt-3 flex items-center justify-between">
                     <div>
-                      <div className="text-[10px] font-mono text-[#10B981] uppercase tracking-widest font-semibold">
-                        {t.bento.certTag}
-                      </div>
-                      <div className="font-tactical font-bold text-base text-white mt-0.5">
-                        {t.bento.certTitle}
-                      </div>
-                      <div className="text-xs text-gray-400 mt-0.5 font-sans">
-                        {t.bento.certDesc}
-                      </div>
+                      <HumanSimulatedTypeText
+                        text={t.bento.certTag}
+                        as="div"
+                        className="text-[10px] font-mono text-[#10B981] uppercase tracking-widest font-semibold"
+                        agentName="Cert"
+                        agentColor="#10B981"
+                        frameLabel="DLI_TAG"
+                        delay={0.5}
+                        dragDuration={0.3}
+                        typingSpeed={14}
+                      />
+                      <HumanSimulatedTypeText
+                        text={t.bento.certTitle}
+                        as="div"
+                        className="font-tactical font-bold text-base text-white mt-0.5"
+                        agentName="Cert"
+                        agentColor="#10B981"
+                        frameLabel="DLI_TITLE"
+                        delay={0.6}
+                        dragDuration={0.35}
+                        typingSpeed={16}
+                      />
+                      <HumanSimulatedTypeText
+                        text={t.bento.certDesc}
+                        as="div"
+                        className="text-xs text-gray-400 mt-0.5 font-sans"
+                        agentName="Cert"
+                        agentColor="#10B981"
+                        frameLabel="DLI_DESC"
+                        delay={0.7}
+                        dragDuration={0.35}
+                        typingSpeed={12}
+                      />
                     </div>
 
                     <a

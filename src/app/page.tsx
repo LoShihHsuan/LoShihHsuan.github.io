@@ -11,17 +11,17 @@ import { FooterSection } from "@/components/sections/FooterSection";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-[#08080A] bg-gradient-to-b from-[#0E1220] via-[#08080A] to-[#0A0D16] text-[#F4F4F6] selection:bg-[#FF5A5F] selection:text-[#08080A]">
-      {/* 全域深邃氛圍漸層光暈層 (Subtle Atmospheric Ambient Gradients) */}
+    <div className="relative min-h-screen bg-[#08080A] bg-gradient-to-b from-[#16111C] via-[#09080B] to-[#140E18] text-[#F4F4F6] selection:bg-[#FF5A5F] selection:text-[#08080A]">
+      {/* 全域深邃氛圍漸層光暈層 (Subtle Warm Atmospheric Ambient Gradients - 高對比襯托冷調科技 Logo) */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* 頂部柔和冷霧藍輝光 */}
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.07),rgba(130,80,220,0.03),transparent_70%)] blur-2xl" />
+        {/* 頂部柔和暮霞暖珀輝光 (與 Logo 冷青色呈雅緻互補對比) */}
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_at_center,rgba(255,142,83,0.06),rgba(255,90,95,0.035),transparent_70%)] blur-2xl" />
         {/* 中部左側日落微光柔和漫射 */}
-        <div className="absolute top-[35%] -left-64 w-[750px] h-[750px] bg-[radial-gradient(circle,rgba(255,90,95,0.035),rgba(255,142,83,0.015),transparent_70%)] blur-3xl" />
-        {/* 中下右側電光冷藍微光漫射 */}
-        <div className="absolute top-[65%] -right-64 w-[750px] h-[750px] bg-[radial-gradient(circle,rgba(0,210,255,0.035),rgba(59,130,246,0.015),transparent_70%)] blur-3xl" />
+        <div className="absolute top-[35%] -left-64 w-[750px] h-[750px] bg-[radial-gradient(circle,rgba(255,90,95,0.045),rgba(255,142,83,0.02),transparent_70%)] blur-3xl" />
+        {/* 中下右側暮光薰衣草紫微光漫射 */}
+        <div className="absolute top-[65%] -right-64 w-[750px] h-[750px] bg-[radial-gradient(circle,rgba(179,157,219,0.04),rgba(255,90,95,0.02),transparent_70%)] blur-3xl" />
         {/* 頁底深邃曜岩漸層微光 */}
-        <div className="absolute bottom-0 inset-x-0 h-[650px] bg-gradient-to-t from-[#0B0E1A]/40 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 inset-x-0 h-[650px] bg-gradient-to-t from-[#160E18]/40 to-transparent pointer-events-none" />
       </div>
 
       <div className="relative z-10">

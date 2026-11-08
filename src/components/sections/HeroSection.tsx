@@ -4,7 +4,8 @@ import React from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
 import { FigmaCanvasFrame } from "@/components/figma/FigmaCanvasFrame";
 import { HumanSimulatedDragSection } from "@/components/generative/HumanSimulatedDragSection";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { HumanSimulatedTypeText } from "@/components/generative/HumanSimulatedTypeText";
+import { ArrowDown } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const HeroSection: React.FC = () => {
@@ -12,7 +13,7 @@ export const HeroSection: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-[92vh] pt-32 pb-16 flex flex-col justify-center overflow-hidden bg-gradient-to-b from-[#0E1220]/90 via-[#08080A]/95 to-[#08080A]">
+    <section className="relative min-h-[92vh] pt-32 pb-16 flex flex-col justify-center overflow-hidden bg-gradient-to-b from-[#16111C]/90 via-[#09080B]/95 to-[#08080A]">
       {/* Background Ambience: Warm Sunset Atmospheric Rim Glow */}
       <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[700px] h-[700px] bg-sunset-glow opacity-80 pointer-events-none" />
 
@@ -30,33 +31,82 @@ export const HeroSection: React.FC = () => {
             >
               <FigmaCanvasFrame label="HERO_STATEMENT" showHandles={true}>
                 <div className="space-y-4">
-                  <p className="font-editorial italic text-3xl sm:text-4xl text-gray-300 tracking-wide">
-                    {t.hero.kicker}
-                  </p>
+                  <HumanSimulatedTypeText
+                    text={t.hero.kicker}
+                    as="p"
+                    className="font-editorial italic text-3xl sm:text-4xl text-gray-300 tracking-wide"
+                    agentName="Editor"
+                    agentColor="#FF8E53"
+                    frameLabel="HERO_KICKER"
+                    delay={0.15}
+                    dragDuration={0.45}
+                    typingSpeed={20}
+                  />
 
-                  <div className="relative inline-block">
-                    <h1 className="text-5xl sm:text-7xl font-tactical font-black text-white tracking-tight uppercase leading-none">
-                      {personal.enName.toUpperCase()}.
-                    </h1>
+                  <div className="relative inline-block w-full">
+                    <HumanSimulatedTypeText
+                      text={`${personal.enName.toUpperCase()}.`}
+                      as="h1"
+                      className="text-5xl sm:text-7xl font-tactical font-black text-white tracking-tight uppercase leading-none"
+                      agentName="Lead"
+                      agentColor="#FF5A5F"
+                      frameLabel="HERO_TITLE"
+                      delay={0.25}
+                      dragDuration={0.5}
+                      typingSpeed={22}
+                    />
                   </div>
 
-                  <div className="inline-block px-2.5 py-1 rounded bg-[#FF5A5F]/10 border border-[#FF5A5F]/20 text-[#FF5A5F] text-[11px] font-mono font-semibold tracking-wider uppercase">
-                    {t.hero.roleTag}
+                  <div>
+                    <HumanSimulatedTypeText
+                      text={t.hero.roleTag}
+                      as="div"
+                      className="inline-block px-2.5 py-1 rounded bg-[#FF5A5F]/10 border border-[#FF5A5F]/20 text-[#FF5A5F] text-[11px] font-mono font-semibold tracking-wider uppercase"
+                      agentName="Badge"
+                      agentColor="#FF5A5F"
+                      frameLabel="ROLE_TAG"
+                      delay={0.35}
+                      dragDuration={0.4}
+                      typingSpeed={16}
+                    />
                   </div>
 
-                  <p className="text-xs sm:text-sm text-gray-400 font-sans leading-relaxed max-w-sm pt-1">
-                    {t.hero.bioIntro} <strong className="text-white font-medium">{t.hero.bioDrone}</strong>、
-                    <strong className="text-white font-medium">{t.hero.bioEdge}</strong> 與{" "}
-                    <strong className="text-white font-medium">{t.hero.bioLlm}</strong>
-                    {t.hero.bioEducation}
-                  </p>
+                  <HumanSimulatedTypeText
+                    segments={[
+                      { text: `${t.hero.bioIntro} ` },
+                      { text: t.hero.bioDrone, bold: true },
+                      { text: `、` },
+                      { text: t.hero.bioEdge, bold: true },
+                      { text: ` 與 ` },
+                      { text: t.hero.bioLlm, bold: true },
+                      { text: t.hero.bioEducation },
+                    ]}
+                    as="p"
+                    className="text-xs sm:text-sm text-gray-400 font-sans leading-relaxed max-w-sm pt-1"
+                    agentName="Bio"
+                    agentColor="#38BDF8"
+                    frameLabel="BIO_STATEMENT"
+                    delay={0.45}
+                    dragDuration={0.5}
+                    typingSpeed={12}
+                  />
 
                   <div className="pt-2">
                     <a
                       href="#work"
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full gradient-sunset text-[#08080A] text-xs font-bold tracking-wider hover:opacity-95 transition-opacity shadow-[0_8px_24px_rgba(255,90,95,0.25)]"
                     >
-                      <span>{t.hero.seeWork}</span>
+                      <HumanSimulatedTypeText
+                        text={t.hero.seeWork}
+                        as="span"
+                        fitContent
+                        agentName="Action"
+                        agentColor="#FF5A5F"
+                        frameLabel="CTA_SEE_WORK"
+                        delay={0.55}
+                        dragDuration={0.3}
+                        typingSpeed={16}
+                      />
                       <ArrowDown className="w-3.5 h-3.5" />
                     </a>
                   </div>
@@ -99,8 +149,8 @@ export const HeroSection: React.FC = () => {
                   className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
 
-                {/* Personal AI Engineering Insignia Badge */}
-                <div className="absolute top-4 right-4 z-20 w-12 h-12 rounded-full overflow-hidden border border-[#00D2FF]/50 shadow-[0_0_20px_rgba(0,210,255,0.35)] bg-[#08080A]/85 backdrop-blur-md p-0.5 group-hover:scale-110 transition-transform duration-300">
+                {/* Personal AI Engineering Insignia Badge - 極簡白底高對比專屬微標 */}
+                <div className="absolute top-4 right-4 z-20 w-12 h-12 rounded-full overflow-hidden border border-white/50 shadow-[0_4px_24px_rgba(255,255,255,0.35)] bg-white p-0.5 group-hover:scale-110 transition-transform duration-300 ring-1 ring-black/10">
                   <img
                     src="/images/personal-logo-technical.png"
                     alt="Lo Shih-Hsuan AI Insignia"
@@ -113,12 +163,28 @@ export const HeroSection: React.FC = () => {
 
                 {/* Stylized Overlay with Name & Title */}
                 <div className="relative z-20 w-full p-6 text-center">
-                  <h2 className="font-tactical font-black text-xl text-white tracking-widest uppercase drop-shadow-lg">
-                    {t.hero.portraitName}
-                  </h2>
-                  <p className="font-mono text-xs text-[#FF5A5F] mt-1 font-semibold tracking-wider drop-shadow-md">
-                    {t.hero.portraitTitle}
-                  </p>
+                  <HumanSimulatedTypeText
+                    text={t.hero.portraitName}
+                    as="h2"
+                    className="font-tactical font-black text-xl text-white tracking-widest uppercase drop-shadow-lg"
+                    agentName="Name"
+                    agentColor="#FF5A5F"
+                    frameLabel="PORTRAIT_NAME"
+                    delay={0.5}
+                    dragDuration={0.4}
+                    typingSpeed={20}
+                  />
+                  <HumanSimulatedTypeText
+                    text={t.hero.portraitTitle}
+                    as="p"
+                    className="font-mono text-xs text-[#FF5A5F] mt-1 font-semibold tracking-wider drop-shadow-md"
+                    agentName="Title"
+                    agentColor="#FF8E53"
+                    frameLabel="PORTRAIT_TITLE"
+                    delay={0.65}
+                    dragDuration={0.4}
+                    typingSpeed={18}
+                  />
                 </div>
               </div>
             </FigmaCanvasFrame>
@@ -140,45 +206,122 @@ export const HeroSection: React.FC = () => {
                   {/* Metric 1 */}
                   <div className="p-4 rounded-xl bg-[#0C0D12] border border-white/[0.08] relative">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-4xl font-tactical font-black text-white">
-                        {t.hero.metric1Number}
-                      </span>
-                      <span className="text-xs font-mono text-[#FF5A5F] font-bold">
-                        {t.hero.metric1Tag}
-                      </span>
+                      <HumanSimulatedTypeText
+                        text={t.hero.metric1Number}
+                        as="span"
+                        fitContent
+                        className="text-4xl font-tactical font-black text-white"
+                        agentName="Count"
+                        agentColor="#FF5A5F"
+                        frameLabel="M1_COUNT"
+                        delay={0.55}
+                        dragDuration={0.3}
+                        typingSpeed={20}
+                      />
+                      <HumanSimulatedTypeText
+                        text={t.hero.metric1Tag}
+                        as="span"
+                        fitContent
+                        className="text-xs font-mono text-[#FF5A5F] font-bold"
+                        agentName="Tag"
+                        agentColor="#FF5A5F"
+                        frameLabel="M1_TAG"
+                        delay={0.65}
+                        dragDuration={0.3}
+                        typingSpeed={15}
+                      />
                     </div>
-                    <div className="text-xs font-sans text-gray-300 font-semibold mt-1">
-                      {t.hero.metric1Title}
-                    </div>
-                    <div className="text-[10px] text-gray-500 font-mono mt-0.5">
-                      {t.hero.metric1Sub}
-                    </div>
+                    <HumanSimulatedTypeText
+                      text={t.hero.metric1Title}
+                      as="div"
+                      className="text-xs font-sans text-gray-300 font-semibold mt-1"
+                      agentName="Stat"
+                      agentColor="#FF5A5F"
+                      frameLabel="METRIC_1"
+                      delay={0.7}
+                      dragDuration={0.35}
+                      typingSpeed={16}
+                    />
+                    <HumanSimulatedTypeText
+                      text={t.hero.metric1Sub}
+                      as="div"
+                      className="text-[10px] text-gray-500 font-mono mt-0.5"
+                      agentName="Sub"
+                      agentColor="#888888"
+                      frameLabel="M1_SUB"
+                      delay={0.8}
+                      dragDuration={0.35}
+                      typingSpeed={14}
+                    />
                   </div>
 
                   {/* Metric 2 */}
                   <div className="p-4 rounded-xl bg-[#0C0D12] border border-white/[0.08] relative">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-tactical font-black text-white">
-                        {t.hero.metric2Title}
-                      </span>
-                      <span className="text-xs font-mono text-[#B39DDB] font-bold">
-                        {t.hero.metric2Tag}
-                      </span>
+                      <HumanSimulatedTypeText
+                        text={t.hero.metric2Title}
+                        as="span"
+                        fitContent
+                        className="text-3xl font-tactical font-black text-white"
+                        agentName="Degree"
+                        agentColor="#B39DDB"
+                        frameLabel="M2_DEGREE"
+                        delay={0.6}
+                        dragDuration={0.3}
+                        typingSpeed={20}
+                      />
+                      <HumanSimulatedTypeText
+                        text={t.hero.metric2Tag}
+                        as="span"
+                        fitContent
+                        className="text-xs font-mono text-[#B39DDB] font-bold"
+                        agentName="Tag"
+                        agentColor="#B39DDB"
+                        frameLabel="M2_TAG"
+                        delay={0.7}
+                        dragDuration={0.3}
+                        typingSpeed={15}
+                      />
                     </div>
-                    <div className="text-xs font-sans text-gray-300 font-semibold mt-1">
-                      {t.hero.metric2School}
-                    </div>
-                    <div className="text-[10px] text-gray-500 font-mono mt-0.5">
-                      {t.hero.metric2Sub}
-                    </div>
+                    <HumanSimulatedTypeText
+                      text={t.hero.metric2School}
+                      as="div"
+                      className="text-xs font-sans text-gray-300 font-semibold mt-1"
+                      agentName="School"
+                      agentColor="#B39DDB"
+                      frameLabel="METRIC_2"
+                      delay={0.75}
+                      dragDuration={0.35}
+                      typingSpeed={16}
+                    />
+                    <HumanSimulatedTypeText
+                      text={t.hero.metric2Sub}
+                      as="div"
+                      className="text-[10px] text-gray-500 font-mono mt-0.5"
+                      agentName="Sub"
+                      agentColor="#888888"
+                      frameLabel="M2_SUB"
+                      delay={0.85}
+                      dragDuration={0.35}
+                      typingSpeed={14}
+                    />
                   </div>
 
                   {/* Status Indicator */}
                   <div className="p-3.5 rounded-xl bg-[#0C0D12] border border-white/[0.08] flex items-center gap-2.5">
                     <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-                    <span className="text-[10.5px] font-mono text-gray-300 tracking-wider">
-                      {t.hero.statusTag}
-                    </span>
+                    <HumanSimulatedTypeText
+                      text={t.hero.statusTag}
+                      as="span"
+                      fitContent
+                      className="text-[10.5px] font-mono text-gray-300 tracking-wider"
+                      agentName="Radar"
+                      agentColor="#10B981"
+                      frameLabel="HERO_STATUS"
+                      delay={0.9}
+                      dragDuration={0.4}
+                      typingSpeed={14}
+                    />
                   </div>
 
                 </div>

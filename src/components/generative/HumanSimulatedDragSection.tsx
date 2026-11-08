@@ -1,7 +1,11 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, createContext } from "react";
 import gsap from "gsap";
+
+export const DragSectionContext = createContext<{ isSectionReady: boolean }>({
+  isSectionReady: true,
+});
 
 interface HumanSimulatedDragSectionProps {
   agentName?: string;
@@ -35,6 +39,7 @@ export const HumanSimulatedDragSection: React.FC<HumanSimulatedDragSectionProps>
   const [hasTriggered, setHasTriggered] = useState(false);
   const [dimensions, setDimensions] = useState({ w: 0, h: 0 });
   const [status, setStatus] = useState<"IDLE" | "DRAGGING" | "COMPLETED">("IDLE");
+  const [isSectionReady, setIsSectionReady] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current || hasTriggered) return;
@@ -133,6 +138,9 @@ export const HumanSimulatedDragSection: React.FC<HumanSimulatedDragSectionProps>
           filter: "blur(0px)",
           duration: 0.55,
           ease: "power2.out",
+          onStart: () => {
+            setIsSectionReady(true);
+          },
         },
         "-=0.2"
       )
@@ -237,7 +245,9 @@ export const HumanSimulatedDragSection: React.FC<HumanSimulatedDragSectionProps>
         ref={contentRef}
         className="relative z-10 w-full h-full opacity-0"
       >
-        {children}
+        <DragSectionContext.Provider value={{ isSectionReady: isSectionReady || status === "COMPLETED" }}>
+          {children}
+        </DragSectionContext.Provider>
       </div>
     </div>
   );

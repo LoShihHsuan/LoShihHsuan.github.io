@@ -3,6 +3,7 @@
 import React from "react";
 import { FigmaCanvasFrame } from "@/components/figma/FigmaCanvasFrame";
 import { HumanSimulatedDragSection } from "@/components/generative/HumanSimulatedDragSection";
+import { HumanSimulatedTypeText } from "@/components/generative/HumanSimulatedTypeText";
 import { ArrowUpRight, Compass, Eye, BrainCircuit } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -17,7 +18,7 @@ export const WorkShowcaseSection: React.FC = () => {
   ];
 
   return (
-    <section id="work" className="relative py-28 bg-gradient-to-b from-[#08080A] via-[#0A0D18]/90 to-[#08080A] overflow-hidden">
+    <section id="work" className="relative py-28 bg-gradient-to-b from-[#08080A] via-[#120E16]/90 to-[#08080A] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-10">
         
         {/* Section Header */}
@@ -29,12 +30,28 @@ export const WorkShowcaseSection: React.FC = () => {
         >
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="text-[11px] font-mono font-semibold text-[#FF5A5F] tracking-widest uppercase mb-2">
-                {t.workShowcase.sectionNum}
-              </div>
-              <h2 className="text-3xl sm:text-5xl font-tactical font-black text-white tracking-tight uppercase">
-                {t.workShowcase.sectionTitle}
-              </h2>
+              <HumanSimulatedTypeText
+                text={t.workShowcase.sectionNum}
+                as="div"
+                className="text-[11px] font-mono font-semibold text-[#FF5A5F] tracking-widest uppercase mb-2"
+                agentName="Index"
+                agentColor="#FF5A5F"
+                frameLabel="WORK_NUM"
+                delay={0.15}
+                dragDuration={0.4}
+                typingSpeed={16}
+              />
+              <HumanSimulatedTypeText
+                text={t.workShowcase.sectionTitle}
+                as="h2"
+                className="text-3xl sm:text-5xl font-tactical font-black text-white tracking-tight uppercase"
+                agentName="Claude"
+                agentColor="#38BDF8"
+                frameLabel="WORK_TITLE"
+                delay={0.25}
+                dragDuration={0.5}
+                typingSpeed={20}
+              />
             </div>
           </div>
         </HumanSimulatedDragSection>
@@ -79,13 +96,44 @@ export const WorkShowcaseSection: React.FC = () => {
                           {/* Live Flight Badge */}
                           <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-[#FF5A5F]/90 text-white font-mono text-[9px] font-bold tracking-wider flex items-center gap-1 shadow-md">
                             <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                            <span>LIVE FLIGHT</span>
+                            <HumanSimulatedTypeText
+                              text="LIVE FLIGHT"
+                              as="span"
+                              fitContent
+                              agentName="Flight"
+                              agentColor="#FF5A5F"
+                              frameLabel="HUD_FLIGHT"
+                              delay={0.4}
+                              dragDuration={0.25}
+                              typingSpeed={14}
+                            />
                           </div>
 
                           {/* Flight Telemetry Stamp */}
                           <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[9px] font-mono text-gray-300">
-                            <span>MavSDK OFFBOARD</span>
-                            <span className="text-[#FF5A5F] font-bold">TARGET-LOCK // STRIKE</span>
+                            <HumanSimulatedTypeText
+                              text="MavSDK OFFBOARD"
+                              as="span"
+                              fitContent
+                              agentName="SDK"
+                              agentColor="#38BDF8"
+                              frameLabel="HUD_OFFBOARD"
+                              delay={0.5}
+                              dragDuration={0.25}
+                              typingSpeed={12}
+                            />
+                            <HumanSimulatedTypeText
+                              text="TARGET-LOCK // STRIKE"
+                              as="span"
+                              fitContent
+                              className="text-[#FF5A5F] font-bold"
+                              agentName="Lock"
+                              agentColor="#FF5A5F"
+                              frameLabel="HUD_LOCK"
+                              delay={0.6}
+                              dragDuration={0.25}
+                              typingSpeed={12}
+                            />
                           </div>
                         </div>
                       )}
@@ -95,9 +143,18 @@ export const WorkShowcaseSection: React.FC = () => {
                           <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#1E2230] to-[#0A0C14] border border-[#FF8E53]/40 flex items-center justify-center transform -rotate-12 shadow-2xl">
                             <Eye className="w-10 h-10 text-[#FF8E53]" />
                           </div>
-                          <span className="font-mono text-[10px] text-gray-400 mt-3 tracking-widest">
-                            10-CV MATRIX
-                          </span>
+                          <HumanSimulatedTypeText
+                            text="10-CV MATRIX"
+                            as="span"
+                            fitContent
+                            className="font-mono text-[10px] text-gray-400 mt-3 tracking-widest"
+                            agentName="CV"
+                            agentColor="#FF8E53"
+                            frameLabel="CV_MATRIX"
+                            delay={0.5}
+                            dragDuration={0.25}
+                            typingSpeed={14}
+                          />
                         </div>
                       )}
 
@@ -117,43 +174,118 @@ export const WorkShowcaseSection: React.FC = () => {
                           {/* Live Status Badge */}
                           <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-[#A78BFA]/90 text-white font-mono text-[9px] font-bold tracking-wider flex items-center gap-1 shadow-md">
                             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                            <span>LLM WIKI DEMO</span>
+                            <HumanSimulatedTypeText
+                              text="LLM WIKI DEMO"
+                              as="span"
+                              fitContent
+                              agentName="LLM"
+                              agentColor="#A78BFA"
+                              frameLabel="HUD_WIKI"
+                              delay={0.4}
+                              dragDuration={0.25}
+                              typingSpeed={14}
+                            />
                           </div>
 
                           {/* Telemetry Stamp */}
                           <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[9px] font-mono text-gray-300">
-                            <span>AUTONOMOUS KNOWLEDGE VAULT</span>
-                            <span className="text-[#A78BFA] font-bold">INSTANT Q&A</span>
+                            <HumanSimulatedTypeText
+                              text="AUTONOMOUS KNOWLEDGE VAULT"
+                              as="span"
+                              fitContent
+                              agentName="Vault"
+                              agentColor="#A78BFA"
+                              frameLabel="HUD_VAULT"
+                              delay={0.5}
+                              dragDuration={0.25}
+                              typingSpeed={12}
+                            />
+                            <HumanSimulatedTypeText
+                              text="INSTANT Q&A"
+                              as="span"
+                              fitContent
+                              className="text-[#A78BFA] font-bold"
+                              agentName="QA"
+                              agentColor="#A78BFA"
+                              frameLabel="HUD_QA"
+                              delay={0.6}
+                              dragDuration={0.25}
+                              typingSpeed={12}
+                            />
                           </div>
                         </div>
                       )}
 
                       {/* Corner Code Tag */}
                       <span className="absolute top-3 left-3 text-[10px] font-mono text-gray-400">
-                        {work.code}
+                        <HumanSimulatedTypeText
+                          text={work.code}
+                          as="span"
+                          fitContent
+                          agentName="Code"
+                          agentColor="#888888"
+                          frameLabel={`CARD_${work.id}_CODE`}
+                          delay={idx * 0.12 + 0.15}
+                          dragDuration={0.25}
+                          typingSpeed={14}
+                        />
                       </span>
                     </div>
 
                     {/* Content Area */}
                     <div className="space-y-3">
-                      <div className="text-[11px] font-mono text-[#FF5A5F] font-semibold tracking-wider">
-                        {work.title}
-                      </div>
-                      <h3 className="text-lg font-tactical font-bold text-white group-hover:text-[#FF5A5F] transition-colors leading-snug">
-                        {work.subtitle}
-                      </h3>
-                      <p className="text-xs text-gray-400 font-sans leading-relaxed line-clamp-3">
-                        {work.description}
-                      </p>
+                      <HumanSimulatedTypeText
+                        text={work.title}
+                        as="div"
+                        className="text-[11px] font-mono text-[#FF5A5F] font-semibold tracking-wider"
+                        agentName={agent.name}
+                        agentColor={agent.color}
+                        frameLabel={`CARD_${work.id}_KICKER`}
+                        delay={idx * 0.12 + 0.15}
+                        dragDuration={0.4}
+                        typingSpeed={18}
+                      />
+                      <HumanSimulatedTypeText
+                        text={work.subtitle}
+                        as="h3"
+                        className="text-lg font-tactical font-bold text-white group-hover:text-[#FF5A5F] transition-colors leading-snug"
+                        agentName={agent.name}
+                        agentColor={agent.color}
+                        frameLabel={`CARD_${work.id}_TITLE`}
+                        delay={idx * 0.12 + 0.3}
+                        dragDuration={0.45}
+                        typingSpeed={18}
+                      />
+                      <HumanSimulatedTypeText
+                        text={work.description}
+                        as="p"
+                        className="text-xs text-gray-400 font-sans leading-relaxed line-clamp-3"
+                        agentName={agent.name}
+                        agentColor={agent.color}
+                        frameLabel={`CARD_${work.id}_DESC`}
+                        delay={idx * 0.12 + 0.45}
+                        dragDuration={0.4}
+                        typingSpeed={8}
+                      />
 
                       <div className="flex flex-wrap gap-1.5 pt-2">
-                        {work.tags.map((tag) => (
-                          <span
+                        {work.tags.map((tag, tagIdx) => (
+                          <div
                             key={tag}
                             className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06] text-[10px] font-mono text-gray-300"
                           >
-                            {tag}
-                          </span>
+                            <HumanSimulatedTypeText
+                              text={tag}
+                              as="span"
+                              fitContent
+                              agentName="Tag"
+                              agentColor={agent.color}
+                              frameLabel={`TAG_${work.id}_${tagIdx + 1}`}
+                              delay={idx * 0.12 + 0.5 + tagIdx * 0.05}
+                              dragDuration={0.25}
+                              typingSpeed={14}
+                            />
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -177,11 +309,41 @@ export const WorkShowcaseSection: React.FC = () => {
               <div className="h-full w-1/3 gradient-sunset rounded-full" />
             </div>
             <div className="flex items-center justify-between mt-2 font-mono text-[9px] text-gray-500">
-              <span>DRAG TIMELINE // 01 TO 03</span>
-              <span className="px-2 py-0.5 rounded bg-[#3B82F6] text-white font-bold">
-                FRAME: 01_SELECTED_WORK
-              </span>
-              <span>PRESS TAB OR SWIPE</span>
+              <HumanSimulatedTypeText
+                text="DRAG TIMELINE // 01 TO 03"
+                as="span"
+                fitContent
+                agentName="Bar"
+                agentColor="#888888"
+                frameLabel="TIMELINE_LEFT"
+                delay={0.4}
+                dragDuration={0.3}
+                typingSpeed={14}
+              />
+              <div className="px-2 py-0.5 rounded bg-[#3B82F6] text-white font-bold">
+                <HumanSimulatedTypeText
+                  text="FRAME: 01_SELECTED_WORK"
+                  as="span"
+                  fitContent
+                  agentName="Frame"
+                  agentColor="#3B82F6"
+                  frameLabel="TIMELINE_TAG"
+                  delay={0.5}
+                  dragDuration={0.3}
+                  typingSpeed={14}
+                />
+              </div>
+              <HumanSimulatedTypeText
+                text="PRESS TAB OR SWIPE"
+                as="span"
+                fitContent
+                agentName="Bar"
+                agentColor="#888888"
+                frameLabel="TIMELINE_RIGHT"
+                delay={0.6}
+                dragDuration={0.3}
+                typingSpeed={14}
+              />
             </div>
           </div>
         </HumanSimulatedDragSection>
